@@ -31,6 +31,8 @@ const getWords = async () => {
     return jsonData;
 }
 
+
+
 export default getWords;
 
 
