@@ -1,26 +1,19 @@
 
 import React, { useEffect } from 'react';
-
 import logo from './logo.svg';
 import './App.css';
 import getWords from './getWords';
-
-
   
-
 function App() {
 
   const addWords = () => {
     console.log('Invoking getWords()')
-    //const wordMap =  getWords()
-    //let jsonArray =[];
-    getWords().then(response => {
+      getWords().then(response => {
       // Do something with the response
       console.log('*!*!');
       console.log(response);
       console.log(typeof(response));
       return JSON.parse(response);
-      //return response.json(); // Return the parsed JSON data
     })
     .then(jsonArray => {
       if (jsonArray) {
