@@ -11,7 +11,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/jmb-front-end-1/src/App.js"
+            "program": "${workspaceFolder}/jmb-front-end-1/src/App.js",
+            "runtimeExecutable": "/Users/sumithasampath/.nvm/versions/node/v20.16.0/bin/node"
         }
     ]
 }

@@ -5,41 +5,42 @@ const getWords = async () => {
     const apiKey = 'AHq559oDgvajhtXir2lYU4R8oDb57tlB7oP8EZUV'
 
     const wordMap = new Map();
-    try{
-      const apiResponse = await fetch(apiUrl, {
+    let jsonData = {};
+
+    const apiResponse = await fetch(apiUrl, {
         headers: {
           'Content-Type': 'Application/json',
           'Authorization':  'Bearer ${apiKey}'
         }
-      });
-      const jsonData = await apiResponse.json();
-      const data_type = typeof jsonData;
-      console.log('Data type is ' + data_type);
-      if(jsonData) {
-        for (const key in jsonData) {
-          const item = jsonData[key];
-          wordMap.set(item.jumbled_word, item.Word);
-        }
+    })
+    .then((response) => response.json())
+    .then ((data) => {
+      if (data.statusCode === 200) {
+        jsonData = data.body;
+        console.log("****");
+        console.log(jsonData);
+        console.log("****");   
       }
       else {
-        console.error('api Response failed to return an object');
+        console.log("API call failed");
       }
-    }
-    catch (error) {
-      console.error('Error fetching data:', error);
-    }
+     })
+    .catch(console.error);
+  
 
-    if(wordMap.size > 0) {
-      console.log ('Returning from getWords ' + wordMap.keys + ' ' + wordMap.values);
-      wordMap.forEach(element => {
-        console.log(element);
-      });
+    /*if(wordMap.size > 0) {
+      //console.log ('Returning from getWords ' + wordMap.keys + ' ' + wordMap.values);
+      wordMap.forEach((value, key) => {
+        console.log(`Key: ${key}, Value: ${value}`);
+      });    
     }
     else {
       console.log ('Returning empty list');
     }
 
-    return wordMap;
+    return wordMap;*/
+    console.log ('Returning: ' + jsonData);
+    return jsonData;
 }
 
 export default getWords;
